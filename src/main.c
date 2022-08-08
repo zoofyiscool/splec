@@ -4,6 +4,7 @@
 char op[30];
 int num1, num2;
 int clrScr();
+int ask();
 int max(int num1, int num2);
 int min(int num1, int num2);
 
@@ -14,17 +15,20 @@ int main() {
     if (scanf("%s", op) == 1);
     if (strcmp(op, "max") == 0) {
         printf("Which numbers do you want to find the max of?, enter after each number.\n");
-        if (scanf("%d", &num1) == 1); /* we have to do this */
-        if (scanf("%d", &num2) == 1); /* because GCC will complain that we didn't check the return value of scanf() */
+        ask();
         max(num1, num2);
     }
     else if (strcmp(op, "min") == 0) {
         printf("Which numbers do you want to find the min of?, enter after each number.\n");
-        if (scanf("%d", &num1) == 1);
-        if (scanf("%d", &num2) == 2);
+        ask();
         min(num1, num2);
     }
     return 0;
+}
+
+int ask() {
+    if (scanf("%d", &num1) == 1); /* we have to do this */
+    if (scanf("%d", &num2) == 2); /* because GCC will complain that we didn't check the return value of scanf() */
 }
 
 int clrScr() {
