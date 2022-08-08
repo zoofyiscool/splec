@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 
 char op[30];
 float num1, num2, res = 0;
@@ -28,15 +29,36 @@ int main() {
         printf("Which numbers do you want to add?, enter after each number.\n");
         ask();
         res = num1 + num2;
+        clrScr();
         showRes("sum");
         return res;
     }
     else if (strcmp(op, "sub") == 0) {
-        printf("Which numbers do you want to add?, enter after each number.\n");
+        printf("Which numbers do you want to subtract?, enter after each number.\n");
         ask();
         res = num1 - num2;
+        clrScr();
         showRes("difference");
         return res;
+    }
+    else if (strcmp(op, "div") == 0) {
+        printf("Which numbers do you want to divide?, enter after each number.\n");
+        ask();
+        res = num1 / num2;
+        clrScr();
+        showRes("quotient");
+        return res;
+    }
+    else if (strcmp(op, "power") == 0) {
+        printf("Which number do you want to find out the power of?, enter after each number.\n");
+        ask();
+        res = pow(num1, num2);
+        clrScr();
+        showRes("exponentiation");
+    }
+    else {
+        printf("Not a valid operator!\n");
+        main();
     }
     return 0;
 }
