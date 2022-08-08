@@ -1,11 +1,11 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#include <stdio.h> // needed for printf, etc.
+#include <string.h> // needed for strcmp
+#include <math.h> // needed for sqrt & pow
 
 char op[30];
 float num1, num2, res = 0;
-int clrScr();
-int ask();
+int clrScr(); /* declares all functions */
+int ask();    /* so we can use them later on */
 int showRes(char *strOp);
 int max(float num1, float num2);
 int min(float num1, float num2);
@@ -17,8 +17,8 @@ int main() {
     if (scanf("%s", op) == 1);
     if (strcmp(op, "max") == 0) {
         printf("Which numbers do you want to find the max of?, enter after each number.\n");
-        ask();
-        max(num1, num2);
+        ask(); // calls the ask function
+        max(num1, num2); // calls the max function and passes num1, num2 to it.
     }
     else if (strcmp(op, "min") == 0) {
         printf("Which numbers do you want to find the min of?, enter after each number.\n");
@@ -28,9 +28,9 @@ int main() {
     else if (strcmp(op, "add") == 0) {
         printf("Which numbers do you want to add?, enter after each number.\n");
         ask();
-        res = num1 + num2;
-        clrScr();
-        showRes("sum");
+        res = num1 + num2; // the result is num1 and num2 added
+        clrScr(); // clears the users screen
+        showRes("sum"); // shows the result, passing the sum parameter prints "sum"
         return res;
     }
     else if (strcmp(op, "sub") == 0) {
@@ -55,6 +55,15 @@ int main() {
         res = pow(num1, num2);
         clrScr();
         showRes("exponentiation");
+        return res;
+    }
+    else if (strcmp(op, "sqrt") == 0) {
+        printf("Which number do you want to find out the square root of?\n");
+        if(scanf("%f", &num1) == 1);
+        res = sqrt(num1);
+        clrScr();
+        showRes("square root");
+        return res;
     }
     else {
         printf("Not a valid operator!\n");
@@ -69,17 +78,17 @@ int ask() {
 }
 
 int showRes(char *strOp) {
-    printf("First number: %.2f\n", num1);
+    printf("First number: %.2f\n", num1); // %.2f rounds the number to the 2 nearest decimals
     printf("Second number: %.2f\n", num2);
-    printf("The %s of the two numbers is: %.2f\n",strOp, res); 
+    printf("The %s of the (two) number(s) is: %.2f\n",strOp, res); // %s is the parameter we pass when we call the function
 }
 
 int clrScr() {
-    printf("\e[1;1H\e[2J");
+    printf("\e[1;1H\e[2J"); // special
 }
 
 int max(float num1, float num2) {
-    if (num1 > num2) {
+    if (num1 > num2) { // basic math
         res = num1;
     }
     else {
