@@ -10,7 +10,7 @@ int max(float num1, float num2);
 int min(float num1, float num2);
 
 int main() {
-    printf("welcome to my C calculator\n");
+    printf("Welcome to Splec\n");
     printf("Operation? (max, min, add, sub, div, power, sqrt) ");
     //fgets(op, sizeof op, stdin); /* C hurts my brain */
     if (scanf("%s", op) == 1);
@@ -28,7 +28,14 @@ int main() {
         printf("Which numbers do you want to add?, enter after each number.\n");
         ask();
         res = num1 + num2;
-        showRes("result");
+        showRes("sum");
+        return res;
+    }
+    else if (strcmp(op, "sub") == 0) {
+        printf("Which numbers do you want to add?, enter after each number.\n");
+        ask();
+        res = num1 - num2;
+        showRes("difference");
         return res;
     }
     return 0;
