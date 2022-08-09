@@ -1,4 +1,5 @@
 #include <stdio.h> // needed for printf, etc.
+#include <stdbool.h>
 #include <string.h> // needed for strcmp
 #include <math.h> // needed for sqrt & pow
 
@@ -6,7 +7,7 @@ char op[30];
 float num1, num2, res = 0;
 int clrScr(); /* declares all functions */
 int ask();    /* so we can use them later on */
-int showRes(char *strOp);
+int showRes(char *strOp, bool twoNumber);
 int max(float num1, float num2);
 int min(float num1, float num2);
 
@@ -30,7 +31,7 @@ int main() {
         ask();
         res = num1 + num2; // the result is num1 and num2 added
         clrScr(); // clears the users screen
-        showRes("sum"); // shows the result, passing the sum parameter prints "sum"
+        showRes("sum", true); // shows the result, passing the sum parameter prints "sum"
         return res;
     }
     else if (strcmp(op, "sub") == 0) {
@@ -38,7 +39,7 @@ int main() {
         ask();
         res = num1 - num2;
         clrScr();
-        showRes("difference");
+        showRes("difference", true);
         return res;
     }
     else if (strcmp(op, "div") == 0) {
@@ -46,7 +47,7 @@ int main() {
         ask();
         res = num1 / num2;
         clrScr();
-        showRes("quotient");
+        showRes("quotient", true);
         return res;
     }
     else if (strcmp(op, "power") == 0) {
@@ -54,7 +55,7 @@ int main() {
         ask();
         res = pow(num1, num2);
         clrScr();
-        showRes("exponentiation");
+        showRes("exponentiation", true);
         return res;
     }
     else if (strcmp(op, "sqrt") == 0) {
@@ -62,7 +63,7 @@ int main() {
         if(scanf("%f", &num1) == 1);
         res = sqrt(num1);
         clrScr();
-        showRes("square root");
+        showRes("square root", false);
         return res;
     }
     else {
@@ -77,10 +78,16 @@ int ask() {
     if (scanf("%f", &num2) == 2); /* because GCC will complain that we didn't check the return value of scanf() */
 }
 
-int showRes(char *strOp) {
-    printf("First number: %.2f\n", num1); // %.2f rounds the number to the 2 nearest decimals
-    printf("Second number: %.2f\n", num2);
-    printf("The %s of the (two) number(s) is: %.2f\n",strOp, res); // %s is the parameter we pass when we call the function
+int showRes(char *strOp, bool twoNumber) {
+    if (twoNumber) {
+        printf("First number: %.2f\n", num1); // %.2f rounds the number to the 2 nearest decimals
+        printf("Second number: %.2f\n", num2);
+        printf("The %s of the two numbers is: %.2f\n", strOp, res); // %s is the parameter we pass when we call the function
+    }
+    else {
+        printf("Number: %.2f\n", num1);
+        printf("The %s of the number is: %.2f\n", strOp, res);
+    }
 }
 
 int clrScr() {
@@ -95,7 +102,7 @@ int max(float num1, float num2) {
         res = num2;
     }
     clrScr();
-    showRes("largest");
+    showRes("largest", true);
     return res;
 }
 
@@ -107,6 +114,6 @@ int min(float num1, float num2) {
         res = num2;
     }
     clrScr();
-    showRes("smallest");
+    showRes("smallest", true);
     return res;
 }
